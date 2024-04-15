@@ -26,8 +26,17 @@
       console.log(dict.apple);
       console.log(dict["apple"]);
 
+      //キーの変更
       dict.apple = "林檎";
       console.log(dict.apple);
+
+      //キーの追加
+      dict.grape = "ぶどう";
+
+      //キーの削除
+      delete dict.orange;
+
+      console.log(dict);
     </script>
   </body>
 </html>
