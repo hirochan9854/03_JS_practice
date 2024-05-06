@@ -1,0 +1,42 @@
+//東海4県のコード番号をオブジェクトの配列にしておきます。
+const codeNums = [
+  { 愛知県: 230000 },
+  { 岐阜県: 210000 },
+  { 三重県: 240000 },
+  { 静岡県: 220000 },
+];
+//テンプレートリテラルでconst urlに代入します。
+const url = `https://www.jma.go.jp/bosai/forecast/data/overview_forecast/${codeNums[0]["愛知県"]}.json`;
+
+fetch(url)
+  .then(function (response) {
+    //接続できているかをステータスの応答で確認。エラーなら止める。
+    if (response.status !== 200) {
+      console.log("問題がありました。Status Code:" + response.status);
+      return;
+    }
+    //レスポンスをJSONに変換して、取得。
+    response.json().then(function (weather) {
+      console.log(weather);
+    });
+  })
+  //最終的にエラーなら通知。
+  .catch(function (err) {
+    console.log("Fetch Error:", err);
+  });
+
+const weekUrl = `https://www.jma.go.jp/bosai/forecast/data/forecast/${codeNums[0]["愛知県"]}.json`;
+
+fetch(weekUrl)
+  .then((response) => {
+    if (response.status !== 200) {
+      console.log("問題がありました。Status Code:" + response.status);
+      return;
+    }
+    response.json().then((data) => {
+      console.log(data);
+    });
+  })
+  .catch((err) => {
+    console.log("Fetch Error:", err);
+  });
