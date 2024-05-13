@@ -162,47 +162,7 @@ fetch(weekUrl)
     response.json().then(function (data) {
       //気象庁の天気情報jsonから天気コードを取得
       const weekly = data[1].timeSeries[0].areas[0].weatherCodes;
-
-      //予報日を取得
-      const weeklyDate = data[1].timeSeries[0].timeDefines;
-      //曜日設定用の配列を用意
-      const dayarray = [
-        "日曜日",
-        "月曜日",
-        "火曜日",
-        "水曜日",
-        "木曜日",
-        "金曜日",
-        "土曜日",
-      ];
-      //表示させるDOMを取得
-      const seventhArea = document.querySelector(".seventh");
-      const tableElm = document.querySelector(".seventh table");
-      //h1に愛知県を表示させて、追加する。
-      const aichiTitle = document.createElement("h1");
-      aichiTitle.innerHTML = `${data[1].timeSeries[0].areas[0].area.name}週間天気`;
-      seventhArea.insertBefore(aichiTitle, tableElm);
-
-      //1週間の日数をループさせる
-      for (let i = 0; i < weekly.length; i++) {
-        console.log(weekly[i], weeklyDate[i]);
-        //trは行、tdは列で必要な要素を作成
-        const trElm = document.createElement("tr");
-        const tdElmData = document.createElement("td");
-        const tdElmWeather = document.createElement("td");
-        //日数を行に設定
-        tdElmData.innerHTML = `${
-          new Date(weeklyDate[i]).getMonth() + 1
-        }月 ${new Date(weeklyDate[i]).getDate()}日（${
-          dayarray[new Date(weeklyDate[i]).getDay()]
-        }）`;
-        trElm.appendChild(tdElmData);
-        //更に天気コードから行に追加
-        tdElmWeather.innerHTML = weathercode[weekly[i]][3];
-        trElm.appendChild(tdElmWeather);
-        //tableに行を追加
-        tableElm.appendChild(trElm);
-      }
+      console.log(weekly);
     });
   })
   .catch(function (err) {
