@@ -8,7 +8,8 @@ const workPages = await getCollection('works');
 <Layout title="トップページ">
 	 <main>
       <section>
-{workPages.map(productPage => (<Card title={productPage.data.title} href=`/works/${productPage.slug}` thumbnail={productPage.data.thumbnail} body={productPage.data.description} />
+{workPages.map(productPage =>
+ (<Card title={productPage.data.title} href=`/works/${productPage.slug}` thumbnail={productPage.data.thumbnail} body={productPage.data.description} />
 ))}
       </section>
     </main>
